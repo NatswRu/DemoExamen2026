@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4a5e523d49e542fbaaf359a431f481e7" Name="Diagram1">
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.CategoryTable" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.ManufacturerTable" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.MeasurementTable" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.OrderTable" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.OrderToTovarTable" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.ProductTable" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.ProviderTable" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.RoleTable" Width="1.5" PointX="1.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.StatusTable" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.StreetTable" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.TovarTable" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoEcsamenDBModel.UserTable" Width="1.5" PointX="0.75" PointY="20.5" IsExpanded="true" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_TovarTable_CategoryTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_TovarTable_ManufacturerTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_TovarTable_MeasurementTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_OrderTable_StatusTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_OrderTable_StreetTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_OrderTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_OrderToTovarTable_OrderTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_OrderToTovarTable_TovarTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_TovarTable_ProductTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_TovarTable_ProviderTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoEcsamenDBModel.FK_UserTable_RoleTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

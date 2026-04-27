@@ -1,0 +1,84 @@
+﻿<Window x:Class="DemoExamen2026.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoExamen2026"
+        mc:Ignorable="d" Style="{StaticResource Windows}"
+        Title="Продукты" Height="800" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid HorizontalAlignment="Left" x:Name="AdminPanel">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="20 0" Grid.Column="0">
+                <TextBlock Text="Поиск" />
+                <TextBox x:Name="SearchingTextBox" Width="200" TextChanged="SearchingTextBox_TextChanged"/>
+            </StackPanel>
+            <StackPanel Margin="20 0" Grid.Column="1">
+                <TextBlock Text="Сортировка" />
+                <ComboBox x:Name="SortingComboBox" Width="200" SelectionChanged="SortingComboBox_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="20 0" Grid.Column="2">
+                <TextBlock Text="Фильтрация" />
+                <ComboBox x:Name="FilteringComboBox" Width="200" SelectionChanged="FilteringComboBox_SelectionChanged"/>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock x:Name="FullUserName" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20 10"/>
+        <ScrollViewer Grid.Row="1">
+            <ListBox x:Name="ProductList" SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10" Background="{Binding _background}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Width="80" Height="80" Margin="15 0">
+                                    <Image Source="{Binding Photo}"/>
+                                </Border>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock FontWeight="SemiBold">
+                                        <Run Text="{Binding CategoryTable.Category}"/>
+                                        <Run Text=" | "/>
+                                        <Run Text="{Binding ProductTable.Product}"/>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Commentary}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding ProviderTable.Provider}" />
+                                    <TextBlock Text="{Binding ManufacturerTable.Manufacturer}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Цена: "/>
+                                        <TextBlock Text="{Binding Price}" Foreground="Red" TextDecorations="Strikethrough"/>
+                                        <TextBlock Text=" "/>
+                                        <TextBlock Text="{Binding NewPrice}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding MeasurementTable.Measurement}"/>
+                                    <TextBlock Text="{Binding Count}"/>
+                                </StackPanel>
+                                <Border Grid.Column="2">
+                                    <TextBlock Text="{Binding Discount}"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="20 0">
+            <Button x:Name="AddEditButton" Content="Добавить / Редактировать" Margin="5,0" Click="AddEditButton_Click"/>
+            <Button x:Name="LogOutButton" Content="Выйти" Margin="5,0" Click="LogOutButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

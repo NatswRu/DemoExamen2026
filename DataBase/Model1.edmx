@@ -1,0 +1,816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DemoEcsamenDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoryTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManufacturerTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Manufacturer" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MeasurementTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Measurement" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateOrder" Type="date" Nullable="false" />
+          <Property Name="DateDelivery" Type="date" Nullable="false" />
+          <Property Name="StreetID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderToTovarTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="TovarID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProviderTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Provider" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="StatusTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StreetTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Town" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Street" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Home" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TovarTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Articule" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="MeasurementID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="ProviderID" Type="int" Nullable="false" />
+          <Property Name="ManufacturerID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Commentary" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="SecondName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="ThirdName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="IDRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OrderTable_StatusTable">
+          <End Role="StatusTable" Type="Self.StatusTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_StreetTable">
+          <End Role="StreetTable" Type="Self.StreetTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="StreetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToTovarTable_OrderTable">
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="1" />
+          <End Role="OrderToTovarTable" Type="Self.OrderToTovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderToTovarTable">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToTovarTable_TovarTable">
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="1" />
+          <End Role="OrderToTovarTable" Type="Self.OrderToTovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TovarTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderToTovarTable">
+              <PropertyRef Name="TovarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_CategoryTable">
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_ManufacturerTable">
+          <End Role="ManufacturerTable" Type="Self.ManufacturerTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManufacturerTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="ManufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_MeasurementTable">
+          <End Role="MeasurementTable" Type="Self.MeasurementTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeasurementTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="MeasurementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_ProductTable">
+          <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_ProviderTable">
+          <End Role="ProviderTable" Type="Self.ProviderTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProviderTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_RoleTable">
+          <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="IDRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DemoEcsamenDBModelContainer">
+          <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManufacturerTable" EntityType="Self.ManufacturerTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeasurementTable" EntityType="Self.MeasurementTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderTable" EntityType="Self.OrderTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderToTovarTable" EntityType="Self.OrderToTovarTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTable" EntityType="Self.ProductTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProviderTable" EntityType="Self.ProviderTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusTable" EntityType="Self.StatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StreetTable" EntityType="Self.StreetTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TovarTable" EntityType="Self.TovarTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OrderTable_StatusTable" Association="Self.FK_OrderTable_StatusTable">
+            <End Role="StatusTable" EntitySet="StatusTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_StreetTable" Association="Self.FK_OrderTable_StreetTable">
+            <End Role="StreetTable" EntitySet="StreetTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_UserTable" Association="Self.FK_OrderTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToTovarTable_OrderTable" Association="Self.FK_OrderToTovarTable_OrderTable">
+            <End Role="OrderTable" EntitySet="OrderTable" />
+            <End Role="OrderToTovarTable" EntitySet="OrderToTovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToTovarTable_TovarTable" Association="Self.FK_OrderToTovarTable_TovarTable">
+            <End Role="TovarTable" EntitySet="TovarTable" />
+            <End Role="OrderToTovarTable" EntitySet="OrderToTovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_CategoryTable" Association="Self.FK_TovarTable_CategoryTable">
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_ManufacturerTable" Association="Self.FK_TovarTable_ManufacturerTable">
+            <End Role="ManufacturerTable" EntitySet="ManufacturerTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_MeasurementTable" Association="Self.FK_TovarTable_MeasurementTable">
+            <End Role="MeasurementTable" EntitySet="MeasurementTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_ProductTable" Association="Self.FK_TovarTable_ProductTable">
+            <End Role="ProductTable" EntitySet="ProductTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_ProviderTable" Association="Self.FK_TovarTable_ProviderTable">
+            <End Role="ProviderTable" EntitySet="ProviderTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_RoleTable" Association="Self.FK_UserTable_RoleTable">
+            <End Role="RoleTable" EntitySet="RoleTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoEcsamenDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CategoryTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TovarTable" Relationship="Self.FK_TovarTable_CategoryTable" FromRole="CategoryTable" ToRole="TovarTable" />
+        </EntityType>
+        <EntityType Name="ManufacturerTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Manufacturer" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TovarTable" Relationship="Self.FK_TovarTable_ManufacturerTable" FromRole="ManufacturerTable" ToRole="TovarTable" />
+        </EntityType>
+        <EntityType Name="MeasurementTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Measurement" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TovarTable" Relationship="Self.FK_TovarTable_MeasurementTable" FromRole="MeasurementTable" ToRole="TovarTable" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOrder" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateDelivery" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StreetID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StatusTable" Relationship="Self.FK_OrderTable_StatusTable" FromRole="OrderTable" ToRole="StatusTable" />
+          <NavigationProperty Name="StreetTable" Relationship="Self.FK_OrderTable_StreetTable" FromRole="OrderTable" ToRole="StreetTable" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK_OrderTable_UserTable" FromRole="OrderTable" ToRole="UserTable" />
+          <NavigationProperty Name="OrderToTovarTable" Relationship="Self.FK_OrderToTovarTable_OrderTable" FromRole="OrderTable" ToRole="OrderToTovarTable" />
+        </EntityType>
+        <EntityType Name="OrderToTovarTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="TovarID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK_OrderToTovarTable_OrderTable" FromRole="OrderToTovarTable" ToRole="OrderTable" />
+          <NavigationProperty Name="TovarTable" Relationship="Self.FK_OrderToTovarTable_TovarTable" FromRole="OrderToTovarTable" ToRole="TovarTable" />
+        </EntityType>
+        <EntityType Name="ProductTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TovarTable" Relationship="Self.FK_TovarTable_ProductTable" FromRole="ProductTable" ToRole="TovarTable" />
+        </EntityType>
+        <EntityType Name="ProviderTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Provider" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TovarTable" Relationship="Self.FK_TovarTable_ProviderTable" FromRole="ProviderTable" ToRole="TovarTable" />
+        </EntityType>
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK_UserTable_RoleTable" FromRole="RoleTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="StatusTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK_OrderTable_StatusTable" FromRole="StatusTable" ToRole="OrderTable" />
+        </EntityType>
+        <EntityType Name="StreetTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Town" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Home" Type="Int32" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK_OrderTable_StreetTable" FromRole="StreetTable" ToRole="OrderTable" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TovarTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Articule" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="MeasurementID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="ProviderID" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Commentary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryTable" Relationship="Self.FK_TovarTable_CategoryTable" FromRole="TovarTable" ToRole="CategoryTable" />
+          <NavigationProperty Name="ManufacturerTable" Relationship="Self.FK_TovarTable_ManufacturerTable" FromRole="TovarTable" ToRole="ManufacturerTable" />
+          <NavigationProperty Name="MeasurementTable" Relationship="Self.FK_TovarTable_MeasurementTable" FromRole="TovarTable" ToRole="MeasurementTable" />
+          <NavigationProperty Name="OrderToTovarTable" Relationship="Self.FK_OrderToTovarTable_TovarTable" FromRole="TovarTable" ToRole="OrderToTovarTable" />
+          <NavigationProperty Name="ProductTable" Relationship="Self.FK_TovarTable_ProductTable" FromRole="TovarTable" ToRole="ProductTable" />
+          <NavigationProperty Name="ProviderTable" Relationship="Self.FK_TovarTable_ProviderTable" FromRole="TovarTable" ToRole="ProviderTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SecondName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ThirdName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IDRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK_OrderTable_UserTable" FromRole="UserTable" ToRole="OrderTable" />
+          <NavigationProperty Name="RoleTable" Relationship="Self.FK_UserTable_RoleTable" FromRole="UserTable" ToRole="RoleTable" />
+        </EntityType>
+        <Association Name="FK_TovarTable_CategoryTable">
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_ManufacturerTable">
+          <End Role="ManufacturerTable" Type="Self.ManufacturerTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManufacturerTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="ManufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_MeasurementTable">
+          <End Role="MeasurementTable" Type="Self.MeasurementTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeasurementTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="MeasurementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_StatusTable">
+          <End Role="StatusTable" Type="Self.StatusTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_StreetTable">
+          <End Role="StreetTable" Type="Self.StreetTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="StreetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToTovarTable_OrderTable">
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="1" />
+          <End Role="OrderToTovarTable" Type="Self.OrderToTovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderToTovarTable">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToTovarTable_TovarTable">
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="1" />
+          <End Role="OrderToTovarTable" Type="Self.OrderToTovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TovarTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderToTovarTable">
+              <PropertyRef Name="TovarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_ProductTable">
+          <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TovarTable_ProviderTable">
+          <End Role="ProviderTable" Type="Self.ProviderTable" Multiplicity="1" />
+          <End Role="TovarTable" Type="Self.TovarTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProviderTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TovarTable">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_RoleTable">
+          <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="IDRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DemoEcsamenDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" />
+          <EntitySet Name="ManufacturerTable" EntityType="Self.ManufacturerTable" />
+          <EntitySet Name="MeasurementTable" EntityType="Self.MeasurementTable" />
+          <EntitySet Name="OrderTable" EntityType="Self.OrderTable" />
+          <EntitySet Name="OrderToTovarTable" EntityType="Self.OrderToTovarTable" />
+          <EntitySet Name="ProductTable" EntityType="Self.ProductTable" />
+          <EntitySet Name="ProviderTable" EntityType="Self.ProviderTable" />
+          <EntitySet Name="RoleTable" EntityType="Self.RoleTable" />
+          <EntitySet Name="StatusTable" EntityType="Self.StatusTable" />
+          <EntitySet Name="StreetTable" EntityType="Self.StreetTable" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TovarTable" EntityType="Self.TovarTable" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK_TovarTable_CategoryTable" Association="Self.FK_TovarTable_CategoryTable">
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_ManufacturerTable" Association="Self.FK_TovarTable_ManufacturerTable">
+            <End Role="ManufacturerTable" EntitySet="ManufacturerTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_MeasurementTable" Association="Self.FK_TovarTable_MeasurementTable">
+            <End Role="MeasurementTable" EntitySet="MeasurementTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_StatusTable" Association="Self.FK_OrderTable_StatusTable">
+            <End Role="StatusTable" EntitySet="StatusTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_StreetTable" Association="Self.FK_OrderTable_StreetTable">
+            <End Role="StreetTable" EntitySet="StreetTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_UserTable" Association="Self.FK_OrderTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToTovarTable_OrderTable" Association="Self.FK_OrderToTovarTable_OrderTable">
+            <End Role="OrderTable" EntitySet="OrderTable" />
+            <End Role="OrderToTovarTable" EntitySet="OrderToTovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToTovarTable_TovarTable" Association="Self.FK_OrderToTovarTable_TovarTable">
+            <End Role="TovarTable" EntitySet="TovarTable" />
+            <End Role="OrderToTovarTable" EntitySet="OrderToTovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_ProductTable" Association="Self.FK_TovarTable_ProductTable">
+            <End Role="ProductTable" EntitySet="ProductTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TovarTable_ProviderTable" Association="Self.FK_TovarTable_ProviderTable">
+            <End Role="ProviderTable" EntitySet="ProviderTable" />
+            <End Role="TovarTable" EntitySet="TovarTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_RoleTable" Association="Self.FK_UserTable_RoleTable">
+            <End Role="RoleTable" EntitySet="RoleTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DemoEcsamenDBModelContainer" CdmEntityContainer="DemoEcsamenDBEntities">
+          <EntitySetMapping Name="CategoryTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.CategoryTable">
+              <MappingFragment StoreEntitySet="CategoryTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManufacturerTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.ManufacturerTable">
+              <MappingFragment StoreEntitySet="ManufacturerTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeasurementTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.MeasurementTable">
+              <MappingFragment StoreEntitySet="MeasurementTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Measurement" ColumnName="Measurement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.OrderTable">
+              <MappingFragment StoreEntitySet="OrderTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+                <ScalarProperty Name="DateDelivery" ColumnName="DateDelivery" />
+                <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderToTovarTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.OrderToTovarTable">
+              <MappingFragment StoreEntitySet="OrderToTovarTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="TovarID" ColumnName="TovarID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.ProductTable">
+              <MappingFragment StoreEntitySet="ProductTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProviderTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.ProviderTable">
+              <MappingFragment StoreEntitySet="ProviderTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.RoleTable">
+              <MappingFragment StoreEntitySet="RoleTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.StatusTable">
+              <MappingFragment StoreEntitySet="StatusTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StreetTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.StreetTable">
+              <MappingFragment StoreEntitySet="StreetTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Home" ColumnName="Home" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TovarTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.TovarTable">
+              <MappingFragment StoreEntitySet="TovarTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Articule" ColumnName="Articule" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="MeasurementID" ColumnName="MeasurementID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Commentary" ColumnName="Commentary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="DemoEcsamenDBModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ThirdName" ColumnName="ThirdName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
