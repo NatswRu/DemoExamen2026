@@ -17,13 +17,12 @@ namespace DemoExamen2026
         private string[] sortingTypes = new string[] { "По умолчанию", "По убыванию", "По возрастанию" };
         private List<string> _filterTypes = new List<string>() { "Все поставщики" };
 
-        // Свойство для привязки выбранного товара
         public TovarViewModel SelectedProduct { get; set; }
 
         public ProductWindow()
         {
             InitializeComponent();
-            DataContext = this; // для привязки SelectedProduct
+            DataContext = this; 
             LoadProducts();
             LoadData();
 
@@ -57,7 +56,6 @@ namespace DemoExamen2026
 
         private void UpdateProducts()
         {
-            // Создаём новую ObservableCollection для сброса старой связи
             ProductList.ItemsSource = new ObservableCollection<TovarViewModel>(_tovarViewModels);
         }
 
@@ -93,7 +91,7 @@ namespace DemoExamen2026
             int sortingType = SortingComboBox.SelectedIndex;
             if (sortingType == 0)
             {
-                LoadProducts(); // сброс к исходному порядку
+                LoadProducts(); 
             }
             else if (sortingType == 1)
             {
@@ -116,7 +114,6 @@ namespace DemoExamen2026
                 return;
             }
 
-            // Фильтруем текущий список _tovarViewModels (или можно из БД)
             var filtered = _tovarViewModels.Where(p => p.ProviderTable.Provider == filterText).ToList();
             _tovarViewModels = filtered;
             UpdateProducts();
@@ -134,33 +131,25 @@ namespace DemoExamen2026
             bool? result = addEditWindow.ShowDialog();
             if (result == true)
             {
-                // Обновляем список товаров после сохранения
                 LoadProducts();
-                // Сбрасываем выделение
                 SelectedProduct = null;
-                // Обновляем фильтры, сортировку (можно просто перезагрузить)
-                // Принудительно вызываем текущие настройки фильтрации/сортировки
                 ApplyCurrentFiltersAndSorting();
             }
         }
 
-        // Вспомогательный метод, чтобы после добавления/редактирования применить текущие настройки
         private void ApplyCurrentFiltersAndSorting()
         {
-            // Сначала фильтрация
             string filterText = FilteringComboBox.SelectedValue?.ToString();
             if (filterText != null && filterText != "Все поставщики")
             {
                 _tovarViewModels = _tovarViewModels.Where(p => p.ProviderTable.Provider == filterText).ToList();
             }
-            // Потом сортировка
             int sortingType = SortingComboBox.SelectedIndex;
             if (sortingType == 1)
                 _tovarViewModels = _tovarViewModels.OrderByDescending(p => p.Count).ToList();
             else if (sortingType == 2)
                 _tovarViewModels = _tovarViewModels.OrderBy(p => p.Count).ToList();
 
-            // И поиск
             string searchText = SearchingTextBox.Text;
             if (!string.IsNullOrWhiteSpace(searchText))
             {
@@ -174,6 +163,50 @@ namespace DemoExamen2026
             }
 
             UpdateProducts();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedProduct == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите товар для удаления.", "Удаление",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            bool hasOrders = _db.OrderToTovarTable.Any(ot => ot.TovarID == SelectedProduct.ID);
+            if (hasOrders)
+            {
+                MessageBox.Show("Невозможно удалить товар, так как он присутствует в заказах.",
+                    "Удаление", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var result = MessageBox.Show($"Вы действительно хотите удалить товар \"{SelectedProduct.ProductTable.Product}\"?",
+                "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    var productToDelete = _db.TovarTable.Find(SelectedProduct.ID);
+                    if (productToDelete != null)
+                    {
+                        _db.TovarTable.Remove(productToDelete);
+                        _db.SaveChanges();
+                        MessageBox.Show("Товар успешно удалён.", "Удаление",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        LoadProducts();
+                        SelectedProduct = null;
+                        ApplyCurrentFiltersAndSorting(); 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

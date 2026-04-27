@@ -77,6 +77,7 @@
         </ScrollViewer>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="20 0">
+            <Button x:Name="DeleteButton" Content="Удалить" Margin="5,0" Click="DeleteButton_Click" Background="LightCoral"/>
             <Button x:Name="AddEditButton" Content="Добавить / Редактировать" Margin="5,0" Click="AddEditButton_Click"/>
             <Button x:Name="LogOutButton" Content="Выйти" Margin="5,0" Click="LogOutButton_Click"/>
         </StackPanel>
